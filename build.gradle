@@ -1,0 +1,58 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url = "http://files.minecraftforge.net/maven" }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+    }
+}
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+dependencies {
+}
+
+version = "1.0"
+group = "com.yourname.modid"
+archivesBaseName = "modid"
+
+sourceCompatibility = targetCompatibility = '1.8'
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.8'
+}
+
+minecraft {
+    version = '1.12.2-14.23.5.2768'
+    runDir = 'run'
+    mappings = 'snapshot_20171003'
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version': project.version, 'mcversion': project.minecraft.version
+    }
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+apply from: 'GVPlugin.gradle'
+
+deny {
+    libs = [
+            //'com.nativelibs4java:bridj:0.7.0',
+            //'org.slf4j:slf4j-api:1.7.2',
+            //'com.github.sarxos:webcam-capture:0.3.12'
+    ]
+}
+
+jar {
+    manifest {
+        attributes 'FMLCorePlugin': 'mdk.mop.ForgePlugin'
+        attributes 'FMLCorePluginContainsFMLMod': true
+    }
+    exclude 'net/minecraft/client/renderer/texture/NativeImage.class'
+}

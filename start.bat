@@ -1,0 +1,2 @@
+gradlew.bat jar
+pause

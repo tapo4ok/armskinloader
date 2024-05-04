@@ -1,0 +1,35 @@
+class Deny {
+    List<String> libs = []
+
+    void setLibs(List<String> libs) {
+        this.libs = libs
+    }
+}
+
+class GVPlugin implements Plugin<Project> {
+    public static GVPlugin Instance;
+    public Project project;
+    public def extension
+    void apply(Project project) {
+        Instance = this;
+        this.project = project;
+        extension = project.extensions.create('deny', Deny)
+
+        start();
+    }
+
+    private void _dependencies() {
+        project.afterEvaluate {
+            extension.libs.each { item ->
+                project.dependencies.add("implementation", item)
+                println("Added dependency: $item")
+            }
+        }
+    }
+
+    static void start() {
+        Instance._dependencies()
+    }
+}
+
+apply plugin: GVPlugin

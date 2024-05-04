@@ -1,0 +1,20 @@
+[
+  {
+    "modid": "armskinloader",
+    "name": "armskinloader",
+    "description": "",
+    "version": "1.0.0",
+    "credits": "",
+    "logoFile": "",
+    "mcversion": "1.12.2",
+    "url": "https://discord.gg/tdwAhAjZAV",
+    "updateUrl": "",
+    "authorList": [
+      "TaPo4oK"
+    ],
+    "dependencies": [],
+    "dependants": [],
+    "requiredMods": [],
+    "useDependencyInformation": "true"
+  }
+]
