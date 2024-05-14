@@ -43,9 +43,7 @@ apply from: 'GVPlugin.gradle'
 
 deny {
     libs = [
-            //'com.nativelibs4java:bridj:0.7.0',
-            //'org.slf4j:slf4j-api:1.7.2',
-            //'com.github.sarxos:webcam-capture:0.3.12'
+
     ]
 }
 
